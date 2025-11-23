@@ -117,10 +117,10 @@ export function Experience() {
             {index !== experiences.length - 1 && (
               <div className="absolute left-6 top-16 w-0.5 h-full bg-border"></div>
             )}
-            
+
             {/* Timeline Dot */}
             <div className="absolute left-4 top-6 w-4 h-4 bg-primary rounded-full border-2 border-background"></div>
-            
+
             {/* Experience Card */}
             <div className="ml-12 p-6 border border-border rounded-lg bg-card hover:bg-card/80 transition-colors">
               {/* Header */}

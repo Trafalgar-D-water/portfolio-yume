@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   ChevronDown,
   ChevronRight,
@@ -10,12 +10,18 @@ import {
   Briefcase,
   GraduationCap,
   Award,
-  Mail
+  Mail,
+  Search,
+  Terminal,
+  Gamepad2
 } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
   onFileClick?: (fileName: string) => void;
+  currentPage?: string;
+  selectedFilters?: string[];
+  onFilterChange?: (filters: string[]) => void;
 }
 
 interface FileTreeItem {
@@ -25,43 +31,33 @@ interface FileTreeItem {
   children?: FileTreeItem[];
   isOpen?: boolean;
   extension?: string;
+  color?: string;
 }
 
-export function Sidebar({ activeTab, onFileClick }: SidebarProps) {
+export function Sidebar({ activeTab, onFileClick, currentPage, selectedFilters = [], onFilterChange }: SidebarProps) {
   const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
-    new Set(['portfolio', 'src', 'components'])
+    new Set(['personal-info', 'contacts', 'projects'])
   );
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fileTree: FileTreeItem[] = [
     {
-      name: 'portfolio',
+      name: 'personal-info',
       type: 'folder',
-      icon: FolderOpen,
+      icon: Folder,
       children: [
-        {
-          name: 'src',
-          type: 'folder',
-          icon: Folder,
-          children: [
-            {
-              name: 'components',
-              type: 'folder',
-              icon: Folder,
-              children: [
-                { name: 'About.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-                { name: 'Projects.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-                { name: 'Skills.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-                { name: 'Experience.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-                { name: 'Contact.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-              ]
-            },
-            { name: 'index.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-            { name: 'App.tsx', type: 'file', icon: Code2, extension: 'tsx' },
-            { name: 'styles.css', type: 'file', icon: Palette, extension: 'css' },
-          ]
-        },
-        { name: 'README.md', type: 'file', icon: FileText, extension: 'md' },
-        { name: 'package.json', type: 'file', icon: FileText, extension: 'json' },
+        { name: 'bio', type: 'file', icon: Folder, extension: 'folder-red', color: 'text-accent' },
+        { name: 'interests', type: 'file', icon: Folder, extension: 'folder-green', color: 'text-primary' },
+        { name: 'education', type: 'file', icon: Folder, extension: 'folder-blue', color: 'text-secondary' },
+      ]
+    },
+    {
+      name: 'contacts',
+      type: 'folder',
+      icon: Folder,
+      children: [
+        { name: 'user@gmail.com', type: 'file', icon: Mail, extension: 'mail' },
+        { name: '+3598246359', type: 'file', icon: Gamepad2, extension: 'phone' },
       ]
     }
   ];
@@ -76,6 +72,15 @@ export function Sidebar({ activeTab, onFileClick }: SidebarProps) {
     setExpandedFolders(newExpanded);
   };
 
+  const handleFilterToggle = (tech: string) => {
+    if (!onFilterChange) return;
+    if (selectedFilters.includes(tech)) {
+      onFilterChange(selectedFilters.filter(t => t !== tech));
+    } else {
+      onFilterChange([...selectedFilters, tech]);
+    }
+  };
+
   const renderFileTree = (items: FileTreeItem[], level = 0, parentPath = '') => {
     return items.map((item, index) => {
       const itemPath = parentPath ? `${parentPath}/${item.name}` : item.name;
@@ -84,48 +89,44 @@ export function Sidebar({ activeTab, onFileClick }: SidebarProps) {
       return (
         <div key={`${itemPath}-${index}`}>
           <div
-            className="flex items-center gap-1 px-2 py-1 hover:bg-white/5 cursor-pointer text-sm group"
-            style={{ paddingLeft: `${8 + level * 16}px` }}
+            className="flex items-center gap-1 px-4 py-1 hover:bg-white/5 cursor-pointer text-sm group transition-colors"
+            style={{ paddingLeft: `${16 + level * 16}px` }} // Adjusted padding for nested items
             onClick={() => {
               if (item.type === 'folder') {
                 toggleFolder(itemPath);
               } else {
-                onFileClick?.(item.name);
+                // Map specific files to routes if needed, or just handle click
+                if (item.name === 'bio') onFileClick?.('about');
+                if (item.name === 'interests') onFileClick?.('skills');
+                if (item.name === 'education') onFileClick?.('experience');
               }
             }}
           >
             {item.type === 'folder' && (
-              <>
+              <span className="mr-1">
                 {isExpanded ? (
-                  <ChevronDown size={16} className="text-gray-400" />
+                  <ChevronDown size={14} className="text-foreground" />
                 ) : (
-                  <ChevronRight size={16} className="text-gray-400" />
+                  <ChevronRight size={14} className="text-foreground" />
                 )}
-                {isExpanded ? (
-                  <FolderOpen size={16} className="text-blue-400" />
-                ) : (
-                  <Folder size={16} className="text-blue-400" />
-                )}
-              </>
+              </span>
             )}
+
             {item.type === 'file' && (
-              <item.icon
-                size={16}
-                className={`
-                  ${item.extension === 'tsx' ? 'text-blue-300' :
-                    item.extension === 'css' ? 'text-purple-300' :
-                      item.extension === 'md' ? 'text-yellow-300' :
-                        item.extension === 'json' ? 'text-green-300' :
-                          'text-gray-400'}
-                `}
-              />
+              <span className="mr-4"></span>
             )}
-            <span className="text-foreground group-hover:text-white truncate">
+
+            <item.icon
+              size={16}
+              className={`mr-2 ${item.color || 'text-foreground'}`}
+            />
+
+            <span className={`truncate ${isExpanded || item.type === 'file' ? 'text-foreground' : 'text-muted-foreground'}`}>
               {item.name}
             </span>
           </div>
           {item.type === 'folder' && isExpanded && item.children && (
-            <div>
+            <div className="py-1">
               {renderFileTree(item.children, level + 1, itemPath)}
             </div>
           )}
@@ -134,74 +135,58 @@ export function Sidebar({ activeTab, onFileClick }: SidebarProps) {
     });
   };
 
-  const getTabContent = () => {
-    switch (activeTab) {
-      case 'explorer':
-        return (
-          <div className="p-2">
-            <div className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">
-              Explorer
-            </div>
-            <div className="space-y-1">
-              {renderFileTree(fileTree)}
-            </div>
-          </div>
-        );
+  const renderProjectFilters = () => {
+    const isExpanded = expandedFolders.has('projects');
+    const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter', 'Next.js'];
 
-      case 'search':
-        return (
-          <div className="p-2">
-            <div className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">
-              Search
-            </div>
-            <div className="space-y-2">
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full px-2 py-1 bg-vscode-editor border border-gray-600 rounded text-sm text-foreground"
-              />
-              <div className="text-xs text-muted-foreground">
-                No results found
-              </div>
-            </div>
-          </div>
-        );
+    return (
+      <div>
+        <div
+          className="flex items-center gap-1 px-4 py-1 hover:bg-white/5 cursor-pointer text-sm group transition-colors"
+          onClick={() => toggleFolder('projects')}
+        >
+          <span className="mr-1">
+            {isExpanded ? (
+              <ChevronDown size={14} className="text-foreground" />
+            ) : (
+              <ChevronRight size={14} className="text-foreground" />
+            )}
+          </span>
+          <span className="font-bold text-foreground">projects</span>
+        </div>
 
-      case 'source-control':
-        return (
-          <div className="p-2">
-            <div className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">
-              Source Control
-            </div>
-            <div className="text-sm text-muted-foreground">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span>Clean working tree</span>
+        {isExpanded && (
+          <div className="py-2 px-6 space-y-2">
+            {techs.map(tech => (
+              <div
+                key={tech}
+                className="flex items-center gap-2 cursor-pointer group"
+                onClick={() => handleFilterToggle(tech)}
+              >
+                <div className={`w-4 h-4 border border-muted-foreground rounded flex items-center justify-center transition-colors ${selectedFilters.includes(tech) ? 'bg-secondary border-secondary' : 'group-hover:border-white'}`}>
+                  {selectedFilters.includes(tech) && <Code2 size={10} className="text-white" />}
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className={`text-sm transition-colors ${selectedFilters.includes(tech) ? 'text-white' : 'text-muted-foreground group-hover:text-white'}`}>
+                    {tech === 'React' && <Code2 size={14} className="inline mr-1 text-blue-400" />}
+                    {tech === 'Vue' && <Code2 size={14} className="inline mr-1 text-green-400" />}
+                    {tech === 'Angular' && <Code2 size={14} className="inline mr-1 text-red-500" />}
+                    {tech === 'HTML' && <Code2 size={14} className="inline mr-1 text-orange-500" />}
+                    {tech === 'CSS' && <Code2 size={14} className="inline mr-1 text-blue-300" />}
+                    {tech}
+                  </span>
+                </div>
               </div>
-              <div className="text-xs">
-                Last commit: Initial portfolio setup
-              </div>
-            </div>
+            ))}
           </div>
-        );
-
-      default:
-        return (
-          <div className="p-2">
-            <div className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">
-              {activeTab.replace('-', ' ')}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Content for {activeTab}
-            </div>
-          </div>
-        );
-    }
+        )}
+      </div>
+    );
   };
 
   return (
-    <div className="vscode-sidebar w-64 md:w-64 sm:w-56 h-full border-r border-border bg-vscode-sidebar overflow-y-auto">
-      {getTabContent()}
+    <div className="w-64 md:w-72 h-full border-r border-border bg-vscode-sidebar overflow-y-auto py-4">
+      {currentPage === 'projects' ? renderProjectFilters() : renderFileTree(fileTree)}
     </div>
   );
 }

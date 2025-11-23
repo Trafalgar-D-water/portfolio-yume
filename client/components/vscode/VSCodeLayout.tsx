@@ -1,134 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { ActivityBar } from './ActivityBar';
+import React from 'react';
 import { Sidebar } from './Sidebar';
-import { EditorTabs } from './EditorTabs';
-import { StatusBar } from './StatusBar';
+import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 
 interface VSCodeLayoutProps {
   children: React.ReactNode;
   currentPage: string;
   onPageChange: (page: string) => void;
+  selectedFilters?: string[];
+  onFilterChange?: (filters: string[]) => void;
 }
 
-export function VSCodeLayout({ children, currentPage, onPageChange }: VSCodeLayoutProps) {
-  const [activeActivityTab, setActiveActivityTab] = useState('explorer');
-  const [sidebarVisible, setSidebarVisible] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [openTabs, setOpenTabs] = useState<string[]>(['about']);
+export function VSCodeLayout({ children, currentPage, onPageChange, selectedFilters, onFilterChange }: VSCodeLayoutProps) {
+  const [activeTab, setActiveTab] = React.useState('explorer');
+  const [sidebarVisible, setSidebarVisible] = React.useState(currentPage !== 'hello');
 
-  // Check if screen is mobile size
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-      // Auto-hide sidebar on mobile
-      if (window.innerWidth < 768) {
-        setSidebarVisible(false);
-      } else {
-        setSidebarVisible(true);
-      }
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Ensure current page is always in open tabs
-  useEffect(() => {
-    if (!openTabs.includes(currentPage)) {
-      setOpenTabs(prev => [...prev, currentPage]);
-    }
-  }, [currentPage]);
-
-  const handleActivityTabChange = (tab: string) => {
-    setActiveActivityTab(tab);
-    // Toggle sidebar if clicking the same tab
-    if (tab === activeActivityTab && sidebarVisible) {
+  React.useEffect(() => {
+    if (currentPage === 'hello') {
       setSidebarVisible(false);
     } else {
       setSidebarVisible(true);
     }
-  };
-
-  const handleFileClick = (fileName: string) => {
-    const pageId = fileName.replace('.tsx', '').toLowerCase();
-    // Map special cases if needed, e.g. index.tsx -> home? 
-    // For now assuming simple mapping based on Sidebar.tsx content
-
-    if (['about', 'projects', 'skills', 'experience', 'contact'].includes(pageId)) {
-      onPageChange(pageId);
-      if (isMobile) setSidebarVisible(false);
-    }
-  };
-
-  const handleTabClose = (tabId: string) => {
-    const newTabs = openTabs.filter(id => id !== tabId);
-    setOpenTabs(newTabs);
-
-    // If we closed the active tab, switch to the last remaining tab
-    if (tabId === currentPage) {
-      if (newTabs.length > 0) {
-        onPageChange(newTabs[newTabs.length - 1]);
-      } else {
-        // If all tabs closed, maybe show a "No Editor" state or default to about?
-        // For now, let's keep 'about' open or handle empty state
-        onPageChange('about');
-        setOpenTabs(['about']);
-      }
-    }
-  };
+  }, [currentPage]);
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-background overflow-hidden">
-      {/* Main layout */}
-      <div className="flex-1 flex relative overflow-hidden">
-        {/* Activity Bar */}
-        <ActivityBar
-          activeTab={activeActivityTab}
-          onTabChange={handleActivityTabChange}
-        />
+    <div className="flex flex-col h-screen bg-background text-foreground overflow-hidden font-mono">
+      {/* Top Navigation */}
+      <Navbar />
 
-        {/* Sidebar - overlay on mobile */}
+      {/* Main Content Area */}
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Sidebar */}
         {sidebarVisible && (
-          <div className={`${isMobile ? 'absolute top-0 left-12 z-10 h-full shadow-xl' : 'h-full flex-shrink-0'}`}>
-            <Sidebar
-              activeTab={activeActivityTab}
-              onFileClick={handleFileClick}
-            />
-          </div>
-        )}
-
-        {/* Mobile overlay backdrop */}
-        {isMobile && sidebarVisible && (
-          <div
-            className="absolute inset-0 bg-black/50 z-0"
-            onClick={() => setSidebarVisible(false)}
+          <Sidebar
+            activeTab={activeTab}
+            onFileClick={onPageChange}
+            currentPage={currentPage}
+            selectedFilters={selectedFilters}
+            onFilterChange={onFilterChange}
           />
         )}
 
         {/* Editor Area */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-vscode-editor">
-          {/* Editor Tabs - scrollable on mobile */}
-          <div className="flex-shrink-0 overflow-x-auto border-b border-border bg-vscode-tabs">
-            <EditorTabs
-              activeTab={currentPage}
-              openTabs={openTabs}
-              onTabChange={onPageChange}
-              onTabClose={handleTabClose}
-            />
+        <div className="flex-1 flex flex-col bg-vscode-editor overflow-hidden relative">
+          {/* Tab Bar / Breadcrumbs */}
+          <div className="h-9 border-b border-border flex items-center bg-vscode-editor px-4 justify-between">
+            <div className="flex items-center">
+              <span className="text-muted-foreground text-sm">{currentPage === 'about' ? 'personal-info' : currentPage}</span>
+              <span className="text-muted-foreground mx-2">/</span>
+              <span className="text-white text-sm">{currentPage === 'about' ? 'bio' : 'index.tsx'}</span>
+            </div>
+
+            {/* Sidebar Toggle Button (Mobile/Desktop) */}
+            <button
+              onClick={() => setSidebarVisible(!sidebarVisible)}
+              className="text-muted-foreground hover:text-white transition-colors"
+              title="Toggle Sidebar"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><path d="M9 3v18" /></svg>
+            </button>
           </div>
 
-          {/* Editor Content */}
-          <div className="flex-1 overflow-auto relative">
+          <div className="flex-1 overflow-y-auto relative">
             {children}
           </div>
         </div>
       </div>
 
-      {/* Status Bar - hidden on small mobile */}
-      <div className="flex-shrink-0 hidden sm:block">
-        <StatusBar />
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

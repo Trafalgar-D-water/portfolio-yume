@@ -100,7 +100,7 @@ export function Skills() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {Object.entries(categories).map(([categoryKey, categoryInfo]) => {
           const categorySkills = getSkillsByCategory(categoryKey);
-          
+
           return (
             <div key={categoryKey} className="space-y-4">
               {/* Category Header */}
