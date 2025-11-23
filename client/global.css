@@ -3,69 +3,181 @@
 @tailwind utilities;
 
 @layer base {
+
   /**
    * VS Code Theme Colors
    * Based on VS Code Dark+ theme with custom portfolio adjustments
   */
   :root {
     /* VS Code Dark Theme */
-    --background: 220 13% 18%; /* #1e1e1e - VS Code editor background */
-    --foreground: 0 0% 86%; /* #d4d4d4 - VS Code default text */
+    --background: 220 13% 18%;
+    /* #1e1e1e - VS Code editor background */
+    --foreground: 0 0% 86%;
+    /* #d4d4d4 - VS Code default text */
 
     --card: 220 13% 18%;
     --card-foreground: 0 0% 86%;
 
-    --popover: 220 13% 15%; /* #252526 - VS Code dropdown */
+    --popover: 220 13% 15%;
+    /* #252526 - VS Code dropdown */
     --popover-foreground: 0 0% 86%;
 
-    --primary: 210 100% 60%; /* #007acc - VS Code blue */
+    --primary: 210 100% 60%;
+    /* #007acc - VS Code blue */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 13% 15%; /* #252526 - VS Code secondary */
+    --secondary: 220 13% 15%;
+    /* #252526 - VS Code secondary */
     --secondary-foreground: 0 0% 86%;
 
     --muted: 220 13% 15%;
-    --muted-foreground: 0 0% 54%; /* #808080 - VS Code comment */
+    --muted-foreground: 0 0% 54%;
+    /* #808080 - VS Code comment */
 
-    --accent: 46 100% 50%; /* #ffcc02 - VS Code selection/highlight */
+    --accent: 46 100% 50%;
+    /* #ffcc02 - VS Code selection/highlight */
     --accent-foreground: 220 13% 18%;
 
-    --destructive: 0 100% 67%; /* #f14c4c - VS Code error red */
+    --destructive: 0 100% 67%;
+    /* #f14c4c - VS Code error red */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%; /* #333333 - VS Code border */
+    --border: 0 0% 20%;
+    /* #333333 - VS Code border */
     --input: 220 13% 15%;
     --ring: 210 100% 60%;
 
     --radius: 0.25rem;
 
     /* VS Code specific colors */
-    --vscode-activitybar: 220 18% 13%; /* #181818 - Activity bar */
-    --vscode-sidebar: 220 13% 15%; /* #252526 - Sidebar */
-    --vscode-editor: 220 13% 18%; /* #1e1e1e - Editor */
-    --vscode-panel: 220 13% 15%; /* #252526 - Panel */
-    --vscode-statusbar: 210 100% 60%; /* #007acc - Status bar */
-    --vscode-tabs: 220 13% 15%; /* #252526 - Tab background */
-    --vscode-tab-active: 220 13% 18%; /* #1e1e1e - Active tab */
-    --vscode-selection: 210 100% 20%; /* #264f78 - Selection */
+    --vscode-activitybar: 220 18% 13%;
+    /* #181818 - Activity bar */
+    --vscode-sidebar: 220 13% 15%;
+    /* #252526 - Sidebar */
+    --vscode-editor: 220 13% 18%;
+    /* #1e1e1e - Editor */
+    --vscode-panel: 220 13% 15%;
+    /* #252526 - Panel */
+    --vscode-statusbar: 210 100% 60%;
+    /* #007acc - Status bar */
+    --vscode-tabs: 220 13% 15%;
+    /* #252526 - Tab background */
+    --vscode-tab-active: 220 13% 18%;
+    /* #1e1e1e - Active tab */
+    --vscode-selection: 210 100% 20%;
+    /* #264f78 - Selection */
 
     /* Syntax highlighting colors */
-    --syntax-keyword: 197 71% 73%; /* #c586c0 - Keywords */
-    --syntax-string: 44 87% 74%; /* #ce9178 - Strings */
-    --syntax-number: 120 100% 75%; /* #b5cea8 - Numbers */
-    --syntax-comment: 0 0% 47%; /* #6a9955 - Comments */
-    --syntax-function: 54 100% 68%; /* #dcdcaa - Functions */
-    --syntax-variable: 210 100% 84%; /* #9cdcfe - Variables */
+    --syntax-keyword: 197 71% 73%;
+    /* #c586c0 - Keywords */
+    --syntax-string: 44 87% 74%;
+    /* #ce9178 - Strings */
+    --syntax-number: 120 100% 75%;
+    /* #b5cea8 - Numbers */
+    --syntax-comment: 0 0% 47%;
+    /* #6a9955 - Comments */
+    --syntax-function: 54 100% 68%;
+    /* #dcdcaa - Functions */
+    --syntax-variable: 210 100% 84%;
+    /* #9cdcfe - Variables */
   }
 
-  .light {
-    /* VS Code Light Theme (optional fallback) */
+  .dark {
+    /* VS Code Dark Theme (Default) */
+    --background: 220 13% 18%;
+    /* #1e1e1e */
+    --foreground: 0 0% 86%;
+    /* #d4d4d4 */
+
+    --vscode-activitybar: 220 18% 13%;
+    /* #181818 */
+    --vscode-sidebar: 220 13% 15%;
+    /* #252526 */
+    --vscode-editor: 220 13% 18%;
+    /* #1e1e1e */
+    --vscode-statusbar: 210 100% 60%;
+    /* #007acc */
+    --vscode-tabs: 220 13% 15%;
+    /* #252526 */
+    --vscode-tab-active: 220 13% 18%;
+    /* #1e1e1e */
+
+    --border: 0 0% 20%;
+    /* #333333 */
+
+    /* Syntax */
+    --syntax-keyword: 197 71% 73%;
+    --syntax-string: 44 87% 74%;
+    --syntax-function: 54 100% 68%;
+    --syntax-comment: 0 0% 47%;
+  }
+
+  .github-light {
+    /* GitHub Light Theme */
     --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
-    --vscode-activitybar: 0 0% 95%;
-    --vscode-sidebar: 0 0% 97%;
+    /* #ffffff */
+    --foreground: 213 13% 14%;
+    /* #24292f */
+
+    --vscode-activitybar: 210 17% 98%;
+    /* #f6f8fa */
+    --vscode-sidebar: 210 17% 98%;
+    /* #f6f8fa */
     --vscode-editor: 0 0% 100%;
-    --border: 0 0% 90%;
+    /* #ffffff */
+    --vscode-statusbar: 0 0% 100%;
+    /* #ffffff (border top) */
+    --vscode-tabs: 210 17% 98%;
+    /* #f6f8fa */
+    --vscode-tab-active: 0 0% 100%;
+    /* #ffffff */
+
+    --border: 213 13% 86%;
+    /* #d0d7de */
+
+    /* Syntax */
+    --syntax-keyword: 345 85% 45%;
+    /* #d73a49 */
+    --syntax-string: 212 92% 28%;
+    /* #032f62 */
+    --syntax-function: 262 47% 44%;
+    /* #6f42c1 */
+    --syntax-comment: 212 8% 43%;
+    /* #6a737d */
+  }
+
+  .github-dark {
+    /* GitHub Dark Theme */
+    --background: 215 28% 17%;
+    /* #0d1117 */
+    --foreground: 210 17% 82%;
+    /* #c9d1d9 */
+
+    --vscode-activitybar: 215 28% 17%;
+    /* #0d1117 */
+    --vscode-sidebar: 215 28% 17%;
+    /* #0d1117 */
+    --vscode-editor: 215 28% 17%;
+    /* #0d1117 */
+    --vscode-statusbar: 215 28% 17%;
+    /* #0d1117 */
+    --vscode-tabs: 215 28% 17%;
+    /* #0d1117 */
+    --vscode-tab-active: 215 28% 17%;
+    /* #0d1117 */
+
+    --border: 210 18% 20%;
+    /* #30363d */
+
+    /* Syntax */
+    --syntax-keyword: 346 84% 63%;
+    /* #ff7b72 */
+    --syntax-string: 205 46% 62%;
+    /* #a5d6ff */
+    --syntax-function: 263 70% 68%;
+    /* #d2a8ff */
+    --syntax-comment: 212 12% 56%;
+    /* #8b949e */
   }
 }
 
@@ -77,7 +189,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-    overflow: hidden; /* Prevent page-level scrolling */
+    overflow: hidden;
+    /* Prevent page-level scrolling */
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -131,12 +244,29 @@
   }
 
   /* Code syntax highlighting */
-  .syntax-keyword { color: hsl(var(--syntax-keyword)); }
-  .syntax-string { color: hsl(var(--syntax-string)); }
-  .syntax-number { color: hsl(var(--syntax-number)); }
-  .syntax-comment { color: hsl(var(--syntax-comment)); }
-  .syntax-function { color: hsl(var(--syntax-function)); }
-  .syntax-variable { color: hsl(var(--syntax-variable)); }
+  .syntax-keyword {
+    color: hsl(var(--syntax-keyword));
+  }
+
+  .syntax-string {
+    color: hsl(var(--syntax-string));
+  }
+
+  .syntax-number {
+    color: hsl(var(--syntax-number));
+  }
+
+  .syntax-comment {
+    color: hsl(var(--syntax-comment));
+  }
+
+  .syntax-function {
+    color: hsl(var(--syntax-function));
+  }
+
+  .syntax-variable {
+    color: hsl(var(--syntax-variable));
+  }
 
   /* Scrollbars */
   ::-webkit-scrollbar {

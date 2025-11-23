@@ -1,4 +1,5 @@
 import "./global.css";
+import { ThemeProvider } from "next-themes";
 
 import { Toaster } from "@/components/ui/toaster";
 import { createRoot } from "react-dom/client";
@@ -13,22 +14,24 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<Index />} />
-          <Route path="/projects" element={<Index />} />
-          <Route path="/skills" element={<Index />} />
-          <Route path="/experience" element={<Index />} />
-          <Route path="/contact" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<Index />} />
+            <Route path="/projects" element={<Index />} />
+            <Route path="/skills" element={<Index />} />
+            <Route path="/experience" element={<Index />} />
+            <Route path="/contact" element={<Index />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

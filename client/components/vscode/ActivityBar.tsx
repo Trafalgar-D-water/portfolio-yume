@@ -1,16 +1,17 @@
 import React from 'react';
-import { 
-  FileText, 
-  Search, 
-  GitBranch, 
-  Play, 
-  Package, 
-  User, 
+import {
+  FileText,
+  Search,
+  GitBranch,
+  Play,
+  Package,
+  User,
   Settings,
   Github,
   Mail,
   Linkedin
 } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface ActivityBarProps {
   activeTab: string;
@@ -83,6 +84,7 @@ export function ActivityBar({ activeTab, onTabChange }: ActivityBarProps) {
 
       {/* Bottom Navigation */}
       <div className="flex flex-col gap-1">
+        <ThemeToggle />
         {bottomItems.map((item) => (
           <button
             key={item.id}

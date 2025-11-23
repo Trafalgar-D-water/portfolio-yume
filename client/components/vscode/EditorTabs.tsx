@@ -11,12 +11,13 @@ interface Tab {
 
 interface EditorTabsProps {
   activeTab: string;
+  openTabs: string[];
   onTabChange: (tabId: string) => void;
-  onTabClose?: (tabId: string) => void;
+  onTabClose: (tabId: string) => void;
 }
 
-export function EditorTabs({ activeTab, onTabChange, onTabClose }: EditorTabsProps) {
-  const tabs: Tab[] = [
+export function EditorTabs({ activeTab, openTabs, onTabChange, onTabClose }: EditorTabsProps) {
+  const allTabs: Tab[] = [
     {
       id: 'about',
       title: 'About Me',
@@ -26,7 +27,7 @@ export function EditorTabs({ activeTab, onTabChange, onTabClose }: EditorTabsPro
     {
       id: 'projects',
       title: 'Projects',
-      fileName: 'Projects.tsx', 
+      fileName: 'Projects.tsx',
       icon: Briefcase,
     },
     {
@@ -49,10 +50,12 @@ export function EditorTabs({ activeTab, onTabChange, onTabClose }: EditorTabsPro
     },
   ];
 
+  const visibleTabs = allTabs.filter(tab => openTabs.includes(tab.id));
+
   return (
     <div className="vscode-tabs h-10 flex items-center bg-vscode-tabs border-b border-border overflow-x-auto">
       <div className="flex min-w-max">
-        {tabs.map((tab) => (
+        {visibleTabs.map((tab) => (
           <div
             key={tab.id}
             className={`
@@ -88,21 +91,19 @@ export function EditorTabs({ activeTab, onTabChange, onTabClose }: EditorTabsPro
             {tab.isDirty && (
               <div className="w-2 h-2 bg-white rounded-full flex-shrink-0" />
             )}
-            {onTabClose && (
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onTabClose(tab.id);
-                }}
-                className={`
-                  flex-shrink-0 p-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity
-                  hover:bg-white/20
-                  ${activeTab === tab.id ? 'text-white' : 'text-gray-400'}
-                `}
-              >
-                <X size={14} />
-              </button>
-            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onTabClose(tab.id);
+              }}
+              className={`
+                flex-shrink-0 p-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity
+                hover:bg-white/20
+                ${activeTab === tab.id ? 'text-white' : 'text-gray-400'}
+              `}
+            >
+              <X size={14} />
+            </button>
           </div>
         ))}
       </div>

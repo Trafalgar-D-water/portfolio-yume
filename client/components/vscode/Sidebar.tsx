@@ -15,6 +15,7 @@ import {
 
 interface SidebarProps {
   activeTab: string;
+  onFileClick?: (fileName: string) => void;
 }
 
 interface FileTreeItem {
@@ -26,7 +27,7 @@ interface FileTreeItem {
   extension?: string;
 }
 
-export function Sidebar({ activeTab }: SidebarProps) {
+export function Sidebar({ activeTab, onFileClick }: SidebarProps) {
   const [expandedFolders, setExpandedFolders] = React.useState<Set<string>>(
     new Set(['portfolio', 'src', 'components'])
   );
@@ -85,7 +86,13 @@ export function Sidebar({ activeTab }: SidebarProps) {
           <div
             className="flex items-center gap-1 px-2 py-1 hover:bg-white/5 cursor-pointer text-sm group"
             style={{ paddingLeft: `${8 + level * 16}px` }}
-            onClick={() => item.type === 'folder' && toggleFolder(itemPath)}
+            onClick={() => {
+              if (item.type === 'folder') {
+                toggleFolder(itemPath);
+              } else {
+                onFileClick?.(item.name);
+              }
+            }}
           >
             {item.type === 'folder' && (
               <>
