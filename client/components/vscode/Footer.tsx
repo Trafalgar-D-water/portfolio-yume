@@ -23,7 +23,7 @@ export function Footer() {
                     <Facebook size={18} />
                 </a>
                 <a
-                    href="https://github.com"
+                    href="https://github.com/Trafalgar-D-water"
                     target="_blank"
                     rel="noreferrer"
                     className="h-full flex items-center px-3 border-r border-border text-muted-foreground hover:text-white transition-colors"
