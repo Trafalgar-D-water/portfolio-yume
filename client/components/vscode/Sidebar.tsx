@@ -59,6 +59,7 @@ export function Sidebar({ activeTab, onFileClick, currentPage, selectedFilters =
       children: [
         { name: 'patnayakpriyanshu@gmail.com', type: 'file', icon: Mail, extension: 'mail' },
         { name: '+91-6263675331', type: 'file', icon: Gamepad2, extension: 'phone' },
+        { name: 'download-resume', type: 'file', icon: FileText, extension: 'pdf', color: 'text-accent' },
       ]
     }
   ];
@@ -100,6 +101,10 @@ export function Sidebar({ activeTab, onFileClick, currentPage, selectedFilters =
                 if (item.name === 'bio') onFileClick?.('about');
                 if (item.name === 'interests') onFileClick?.('skills');
                 if (item.name === 'education') onFileClick?.('experience');
+                if (item.name === 'download-resume') {
+                  // Replace this URL with your actual Google Drive resume link
+                  window.open('https://drive.google.com/file/d/16jppMuskr0jdXUsqlSkcuUrRIs9M0Y8S/view?usp=drive_link', '_blank');
+                }
               }
             }}
           >
