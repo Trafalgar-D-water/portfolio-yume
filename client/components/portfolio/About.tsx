@@ -15,23 +15,23 @@ export function About() {
             <p>
               <span className="text-secondary">/**</span>
               <br />
-              <span className="text-secondary">*</span> I have 5 years of experience in web development.
+              <span className="text-secondary">*</span> I have 2.5+ years of experience as a backend engineer,
               <br />
-              <span className="text-secondary">*</span> I specialize in building scalable, high-performance applications.
+              <span className="text-secondary">*</span> focused on building reliable, efficient, and scalable server-side systems.
               <br />
-              <span className="text-secondary">*</span> My passion lies in creating intuitive and dynamic user experiences.
+              <span className="text-secondary">*</span> I enjoy designing clean architectures, optimizing performance,
               <br />
-              <span className="text-secondary">*</span> I am always eager to learn new technologies and improve my skills.
+              <span className="text-secondary">*</span> and ensuring that applications run smoothly under real-world load.
               <br />
               <span className="text-secondary">*/</span>
             </p>
 
             <p>
-              I started my journey as a self-taught developer, exploring the vast world of coding through online resources and open-source projects. Over the years, I've honed my skills in both frontend and backend technologies, allowing me to deliver complete and robust solutions.
+              My journey began as a self-taught developer, exploring programming through online resources and open-source projects. Over time, I developed strong proficiency in backend technologies and gained hands-on experience building production-grade systems.
             </p>
 
             <p>
-              When I'm not coding, you can find me exploring new tech trends, contributing to the community, or simply enjoying a good cup of coffee while brainstorming my next big idea.
+              Outside of work, I enjoy learning new tools and technologies, contributing to the developer community, and discovering ideas that push my skills forward. When I’m not coding, you’ll probably find me reading about emerging tech or sketching out concepts for my next project over a cup of coffee.
             </p>
           </div>
         </div>
@@ -48,7 +48,7 @@ export function About() {
           <div className="bg-background border border-border rounded-lg p-6 shadow-lg relative group hover:border-secondary transition-colors">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <img src="https://github.com/priyanshupatnayak.png" alt="Profile" className="w-8 h-8 rounded-full" />
+                <img src="https://avatars.githubusercontent.com/u/155691673?v=4" alt="Profile" className="w-8 h-8 rounded-full" />
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-secondary">@priyanshupatnayak</span>
                   <span className="text-xs text-muted-foreground">Created 5 months ago</span>
@@ -61,17 +61,27 @@ export function About() {
             </div>
 
             <div className="bg-vscode-editor p-4 rounded border border-border font-mono text-sm overflow-x-auto">
-              <pre>
-                <code className="language-typescript">
-                  {`function initializeModelChunk<T>(chunk: ResolvedModelChunk): T {
-  const value: T = parseModel(chunk._response, chunk._value);
-  const initializedChunk: InitializedChunk<T> = (chunk: any);
-  initializedChunk._status = INITIALIZED;
-  initializedChunk._value = value;
-  return value;
-}`}
-                </code>
-              </pre>
+              <div className="font-mono">
+                <div>
+                  <span className="text-syntax-keyword">function</span> <span className="text-syntax-function">initializeModelChunk</span><span className="text-foreground">&lt;</span><span className="text-syntax-variable">T</span><span className="text-foreground">&gt;(</span><span className="text-syntax-variable">chunk</span><span className="text-foreground">:</span> <span className="text-syntax-variable">ResolvedModelChunk</span><span className="text-foreground">):</span> <span className="text-syntax-variable">T</span> <span className="text-foreground">{`{`}</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-keyword">const</span> <span className="text-syntax-variable">value</span><span className="text-foreground">:</span> <span className="text-syntax-variable">T</span> <span className="text-foreground">=</span> <span className="text-syntax-function">parseModel</span><span className="text-foreground">(</span><span className="text-syntax-variable">chunk</span><span className="text-foreground">.</span><span className="text-syntax-variable">_response</span><span className="text-foreground">,</span> <span className="text-syntax-variable">chunk</span><span className="text-foreground">.</span><span className="text-syntax-variable">_value</span><span className="text-foreground">);</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-keyword">const</span> <span className="text-syntax-variable">initializedChunk</span><span className="text-foreground">:</span> <span className="text-syntax-variable">InitializedChunk</span><span className="text-foreground">&lt;</span><span className="text-syntax-variable">T</span><span className="text-foreground">&gt;</span> <span className="text-foreground">=</span> <span className="text-foreground">(</span><span className="text-syntax-variable">chunk</span><span className="text-foreground">:</span> <span className="text-syntax-keyword">any</span><span className="text-foreground">);</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-variable">initializedChunk</span><span className="text-foreground">.</span><span className="text-syntax-variable">_status</span> <span className="text-foreground">=</span> <span className="text-syntax-variable">INITIALIZED</span><span className="text-foreground">;</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-variable">initializedChunk</span><span className="text-foreground">.</span><span className="text-syntax-variable">_value</span> <span className="text-foreground">=</span> <span className="text-syntax-variable">value</span><span className="text-foreground">;</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-keyword">return</span> <span className="text-syntax-variable">value</span><span className="text-foreground">;</span>
+                </div>
+                <div><span className="text-foreground">{`}`}</span></div>
+              </div>
             </div>
           </div>
 
@@ -79,7 +89,7 @@ export function About() {
           <div className="bg-background border border-border rounded-lg p-6 shadow-lg relative group hover:border-secondary transition-colors">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <img src="https://github.com/priyanshupatnayak.png" alt="Profile" className="w-8 h-8 rounded-full" />
+                <img src="https://avatars.githubusercontent.com/u/155691673?v=4" alt="Profile" className="w-8 h-8 rounded-full" />
                 <div className="flex flex-col">
                   <span className="text-sm font-bold text-secondary">@priyanshupatnayak</span>
                   <span className="text-xs text-muted-foreground">Created 9 months ago</span>
@@ -92,17 +102,27 @@ export function About() {
             </div>
 
             <div className="bg-vscode-editor p-4 rounded border border-border font-mono text-sm overflow-x-auto">
-              <pre>
-                <code className="language-typescript">
-                  {`export function parseModelTuple(
-  response: Response,
-  value: {+[key: string]: JSONValue} | $ReadOnlyArray<JSONValue>,
-): any {
-  const tuple: [mixed, mixed, mixed, mixed] = (value: any);
-  return tuple;
-}`}
-                </code>
-              </pre>
+              <div className="font-mono">
+                <div>
+                  <span className="text-syntax-keyword">export function</span> <span className="text-syntax-function">parseModelTuple</span><span className="text-foreground">(</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-variable">response</span><span className="text-foreground">:</span> <span className="text-syntax-variable">Response</span><span className="text-foreground">,</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-variable">value</span><span className="text-foreground">:</span> <span className="text-foreground">{`{+[key: string]: JSONValue} | $ReadOnlyArray<JSONValue>`}</span><span className="text-foreground">,</span>
+                </div>
+                <div>
+                  <span className="text-foreground">):</span> <span className="text-syntax-keyword">any</span> <span className="text-foreground">{`{`}</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-keyword">const</span> <span className="text-syntax-variable">tuple</span><span className="text-foreground">:</span> <span className="text-foreground">[</span><span className="text-syntax-keyword">mixed</span><span className="text-foreground">,</span> <span className="text-syntax-keyword">mixed</span><span className="text-foreground">,</span> <span className="text-syntax-keyword">mixed</span><span className="text-foreground">,</span> <span className="text-syntax-keyword">mixed</span><span className="text-foreground">]</span> <span className="text-foreground">=</span> <span className="text-foreground">(</span><span className="text-syntax-variable">value</span><span className="text-foreground">:</span> <span className="text-syntax-keyword">any</span><span className="text-foreground">);</span>
+                </div>
+                <div className="pl-4">
+                  <span className="text-syntax-keyword">return</span> <span className="text-syntax-variable">tuple</span><span className="text-foreground">;</span>
+                </div>
+                <div><span className="text-foreground">{`}`}</span></div>
+              </div>
             </div>
           </div>
         </div>

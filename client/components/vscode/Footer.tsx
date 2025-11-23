@@ -7,7 +7,7 @@ export function Footer() {
             <div className="flex items-center h-full">
                 <span className="text-muted-foreground text-sm mr-4">find me in:</span>
                 <a
-                    href="https://twitter.com"
+                    href="https://x.com/priyanshuuuu44"
                     target="_blank"
                     rel="noreferrer"
                     className="h-full flex items-center px-3 border-r border-border text-muted-foreground hover:text-white transition-colors"
@@ -33,7 +33,7 @@ export function Footer() {
             </div>
 
             <a
-                href="https://github.com/priyanshupatnayak"
+                href="https://github.com/Trafalgar-D-water"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 text-muted-foreground hover:text-white transition-colors cursor-pointer"

@@ -9,22 +9,24 @@ interface Skill {
 export function Skills() {
   const skills: Skill[] = [
     // Frontend
-    { name: 'React', level: 90, category: 'frontend' },
-    { name: 'TypeScript', level: 85, category: 'frontend' },
+    { name: 'React', level: 80, category: 'frontend' },
+    { name: 'TypeScript', level: 75, category: 'frontend' },
     { name: 'JavaScript', level: 95, category: 'frontend' },
     { name: 'HTML5', level: 95, category: 'frontend' },
-    { name: 'CSS3', level: 90, category: 'frontend' },
-    { name: 'TailwindCSS', level: 85, category: 'frontend' },
-    { name: 'Next.js', level: 80, category: 'frontend' },
-    { name: 'Vue.js', level: 70, category: 'frontend' },
+    { name: 'CSS3', level: 70, category: 'frontend' },
+    { name: 'TailwindCSS', level: 65, category: 'frontend' },
+
 
     // Backend
     { name: 'Node.js', level: 85, category: 'backend' },
-    { name: 'Python', level: 80, category: 'backend' },
+    { name: 'Python', level: 70, category: 'backend' },
     { name: 'Express.js', level: 85, category: 'backend' },
+    { name: 'hapi.js', level: 90, category: 'backend' },
     { name: 'FastAPI', level: 75, category: 'backend' },
     { name: 'GraphQL', level: 70, category: 'backend' },
     { name: 'REST APIs', level: 90, category: 'backend' },
+    { name: 'java spring boot', level: 90, category: 'backend' },
+    { name: 'go', level: 65, category: 'backend' },
 
     // Database
     { name: 'MongoDB', level: 80, category: 'database' },
@@ -144,8 +146,8 @@ export function Skills() {
           </div>
           <div className="ml-4 space-y-1">
             <div className="text-syntax-string">"Machine Learning"</div>
-            <div className="text-syntax-string">"Rust"</div>
-            <div className="text-syntax-string">"WebAssembly"</div>
+            <div className="text-syntax-string">"Go"</div>
+            <div className="text-syntax-string">"system Design"</div>
             <div className="text-syntax-string">"Kubernetes"</div>
           </div>
           <div className="text-white">];</div>

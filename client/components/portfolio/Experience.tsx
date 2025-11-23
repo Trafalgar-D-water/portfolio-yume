@@ -17,66 +17,54 @@ export function Experience() {
   const experiences: Experience[] = [
     {
       id: '1',
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Innovations Inc.',
-      location: 'Mumbai, India',
-      duration: '2022 - Present',
+      title: 'Software Engineer 1 (SDE-1)',
+      company: 'Nissi computing Labs',
+      location: 'Bengaluru, India',
+      duration: '2024 - Present',
       type: 'Full-time',
       description: [
-        'Led development of microservices architecture serving 100k+ users',
-        'Implemented CI/CD pipelines reducing deployment time by 60%',
-        'Mentored junior developers and conducted code reviews',
-        'Collaborated with product team to define technical requirements'
+        'Designed and shipped backend services using Node.js, Redis, and PostgreSQL for high-traffic internal tools',
+        'Introduced Docker-based microservice deployments, improving reliability and easing environment setup',
+        'Built internal dashboards in React to monitor service health and request throughput',
+        'Optimized database queries and caching layers, reducing API latency across critical endpoints',
+        'Integrated CI/CD workflows on AWS, automating deployments and improving release confidence'
       ],
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker', 'Kubernetes'],
-      website: 'https://techinnovations.com'
+      technologies: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker', 'Redis', "Mongodb"],
+      website: 'https://www.nissiagency.com/'
     },
     {
       id: '2',
-      title: 'Frontend Developer',
-      company: 'Digital Solutions Ltd.',
+      title: 'Backend Engineer ',
+      company: 'Resonance',
       location: 'Bangalore, India',
-      duration: '2021 - 2022',
+      duration: '2024 - Present',
       type: 'Full-time',
       description: [
-        'Built responsive web applications using React and TypeScript',
-        'Improved application performance by 40% through optimization',
-        'Integrated third-party APIs and payment gateways',
-        'Worked closely with UX team to implement pixel-perfect designs'
+        'Developed scalable backend services in Node.js and Go, powering core features for customer platforms',
+        'Implemented microservice communication patterns and improved service reliability under load',
+        'Used MiniZinc (Python wrapper) to build optimization models for scheduling and allocation workflows',
+        'Integrated external APIs, authentication layers, and internal analytics pipelines',
+        'Improved performance of existing TypeScript services by refactoring bottleneck modules and query logic'
       ],
-      technologies: ['React', 'TypeScript', 'SASS', 'Redux', 'Jest', 'Storybook'],
+      technologies: ['nodejs', 'TypeScript', 'SASS', 'Redux', 'Jest', 'go', 'microservices', 'python(mini-zinc)'],
       website: 'https://digitalsolutions.com'
     },
     {
       id: '3',
-      title: 'Junior Web Developer',
-      company: 'StartupXYZ',
-      location: 'Delhi, India',
-      duration: '2020 - 2021',
-      type: 'Full-time',
-      description: [
-        'Developed and maintained company website and landing pages',
-        'Implemented responsive design principles for mobile optimization',
-        'Collaborated with marketing team on A/B testing initiatives',
-        'Contributed to open-source projects and internal tools'
-      ],
-      technologies: ['JavaScript', 'HTML5', 'CSS3', 'PHP', 'MySQL', 'WordPress'],
-      website: 'https://startupxyz.com'
-    },
-    {
-      id: '4',
-      title: 'Freelance Web Developer',
+      title: 'Freelance Java Full Stack Developer',
       company: 'Self-Employed',
       location: 'Remote',
-      duration: '2019 - 2020',
+      duration: '2023 - 2024',
       type: 'Freelance',
       description: [
-        'Delivered 15+ web projects for various clients',
-        'Specialized in e-commerce solutions and business websites',
-        'Managed project timelines and client communications',
-        'Built long-term relationships with repeat clients'
+        'Delivered end-to-end web applications using Spring Boot, React, and MySQL for clients across multiple domains',
+        'Built REST APIs, authentication modules, and real-time WebSocket features for e-commerce and SaaS products',
+        'Optimized Hibernate queries and database schemas, improving load times for large datasets',
+        'Managed hosting, CI/CD, and deployment pipelines on AWS for client projects',
+        'Handled client communication, requirements gathering, and long-term maintenance contracts'
       ],
-      technologies: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Shopify', 'WooCommerce'],
+
+      technologies: ['Java', 'Spring Boot', 'React', 'MySql', 'hybernate', 'websocket', 'AWS'],
     }
   ];
 
@@ -213,7 +201,7 @@ export function Experience() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="text-center">
-            <div className="text-2xl font-bold text-syntax-number">3+</div>
+            <div className="text-2xl font-bold text-syntax-number">2.5+</div>
             <div className="text-muted-foreground">Years Experience</div>
           </div>
           <div className="text-center">

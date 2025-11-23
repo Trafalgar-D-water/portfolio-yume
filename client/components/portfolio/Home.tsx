@@ -124,7 +124,7 @@ export function Home() {
                         </h1>
                         <h2 className="text-2xl md:text-3xl text-secondary flex items-center gap-2">
                             <span className="text-secondary">&gt;</span>
-                            Full-stack developer
+                            Software Engineer
                         </h2>
                     </div>
 
@@ -140,12 +140,12 @@ export function Home() {
                             <span className="text-accent">githubLink</span>
                             <span className="text-white">=</span>
                             <a
-                                href="https://github.com/priyanshupatnayak"
+                                href="https://github.com/Trafalgar-D-water"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="text-orange-300 hover:underline break-all"
                             >
-                                "https://github.com/priyanshupatnayak"
+                                "https://github.com/Trafalgar-D-water"
                             </a>
                         </p>
                     </div>

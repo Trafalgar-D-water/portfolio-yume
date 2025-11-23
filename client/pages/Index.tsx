@@ -12,7 +12,7 @@ export default function Index() {
   const location = useLocation();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState('hello');
-  const [selectedFilters, setSelectedFilters] = useState<string[]>(['React', 'Vue', 'Next.js', 'HTML', 'CSS', 'Angular', 'Gatsby', 'Flutter']);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
 
   // Update current page based on URL
   useEffect(() => {

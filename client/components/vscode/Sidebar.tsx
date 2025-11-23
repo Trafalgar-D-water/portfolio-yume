@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { projects } from '../../data/projects';
 import {
   ChevronDown,
   ChevronRight,
@@ -56,8 +57,8 @@ export function Sidebar({ activeTab, onFileClick, currentPage, selectedFilters =
       type: 'folder',
       icon: Folder,
       children: [
-        { name: 'user@gmail.com', type: 'file', icon: Mail, extension: 'mail' },
-        { name: '+3598246359', type: 'file', icon: Gamepad2, extension: 'phone' },
+        { name: 'patnayakpriyanshu@gmail.com', type: 'file', icon: Mail, extension: 'mail' },
+        { name: '+91-6263675331', type: 'file', icon: Gamepad2, extension: 'phone' },
       ]
     }
   ];
@@ -137,22 +138,38 @@ export function Sidebar({ activeTab, onFileClick, currentPage, selectedFilters =
 
   const renderProjectFilters = () => {
     const isExpanded = expandedFolders.has('projects');
-    const techs = ['React', 'HTML', 'CSS', 'Vue', 'Angular', 'Gatsby', 'Flutter', 'Next.js'];
+    // Dynamically generate unique tags from projects
+    const techs = Array.from(new Set(projects.flatMap(p => p.technologies))).sort();
 
     return (
       <div>
         <div
-          className="flex items-center gap-1 px-4 py-1 hover:bg-white/5 cursor-pointer text-sm group transition-colors"
+          className="flex items-center justify-between px-4 py-1 hover:bg-white/5 cursor-pointer text-sm group transition-colors"
           onClick={() => toggleFolder('projects')}
         >
-          <span className="mr-1">
-            {isExpanded ? (
-              <ChevronDown size={14} className="text-foreground" />
-            ) : (
-              <ChevronRight size={14} className="text-foreground" />
-            )}
-          </span>
-          <span className="font-bold text-foreground">projects</span>
+          <div className="flex items-center gap-1">
+            <span className="mr-1">
+              {isExpanded ? (
+                <ChevronDown size={14} className="text-foreground" />
+              ) : (
+                <ChevronRight size={14} className="text-foreground" />
+              )}
+            </span>
+            <span className="font-bold text-foreground">projects</span>
+          </div>
+
+          {selectedFilters.length > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onFilterChange?.([]);
+              }}
+              className="text-muted-foreground hover:text-white p-1 rounded hover:bg-white/10 transition-colors"
+              title="Clear filters"
+            >
+              <span className="text-xs">clear</span>
+            </button>
+          )}
         </div>
 
         {isExpanded && (
